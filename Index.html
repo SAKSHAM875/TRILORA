@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRILORA - Natural Dairy & Food Products</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --beige: #f5f1e8;
+      --green: #2c5e3f;
+      --white: #fff;
+      --dark: #333;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: var(--beige);
+      color: var(--dark);
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      background: var(--green);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img {
+      height: 50px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      margin-left: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background: url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    /* ===== PRODUCTS ===== */
+    .products-section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .products-section h2 {
+      color: var(--green);
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .product-card h3 {
+      margin-top: 15px;
+      color: var(--green);
+    }
+    .product-card p {
+      font-size: 0.9rem;
+      color: var(--dark);
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .modal-content {
+      background: var(--beige);
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      color: var(--green);
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover { color: #1e402c; }
+    .modal-content img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .modal-content label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin: 8px 0 4px;
+      color: var(--green);
+    }
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      background: white;
+    }
+    textarea { min-height: 80px; resize: none; }
+    #modalPrice {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--green);
+      margin: 10px 0;
+    }
+    #buyButton {
+      display: block;
+      width: 100%;
+      background: var(--green);
+      color: white;
+      padding: 12px;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #buyButton:hover { background: #1e402c; }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <img src="images/logo.png" alt="TRILORA Logo">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#products">Products</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <h1>Welcome to TRILORA</h1>
+    <p>Nutritious, tasty, and chemical-free natural food products</p>
+  </section>
+
+  <!-- ===== PRODUCTS ===== -->
+  <section id="products" class="products-section">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+      <div class="product-card" onclick="openModal('ghee')">
+        <img src="images/ghee.jpg" alt="Ghee">
+        <h3>Ghee</h3>
+        <p>Pure aromatic ghee from fresh cream.</p>
+      </div>
+      <div class="product-card" onclick="openModal('cow-ghee')">
+        <img src="images/cow-ghee.jpg" alt="Cow Ghee">
+        <h3>Cow Ghee</h3>
+        <p>Rich, authentic cow ghee flavor.</p>
+      </div>
+      <div class="product-card" onclick="openModal('butter')">
+        <img src="images/butter.jpg" alt="Butter">
+        <h3>Butter</h3>
+        <p>Creamy butter for every meal.</p>
+      </div>
+      <div class="product-card" onclick="openModal('table-butter')">
+        <img src="images/table-butter.jpg" alt="Table Butter">
+        <h3>Table Butter</h3>
+        <p>Salted butter for snacks & dishes.</p>
+      </div>
+      <div class="product-card" onclick="openModal('skimmed')">
+        <img src="images/skimmed.jpg" alt="Skimmed Milk Powder">
+        <h3>Skimmed Milk Powder</h3>
+        <p>Healthy, low-fat milk powder.</p>
+      </div>
+      <div class="product-card" onclick="openModal('whole')">
+        <img src="images/whole.jpg" alt="Whole Milk Powder">
+        <h3>Whole Milk Powder</h3>
+        <p>Rich, full-cream milk powder.</p>
+      </div>
+      <div class="product-card" onclick="openModal('whitener')">
+        <img src="images/whitener.jpg" alt="Dairy Whitener">
+        <h3>Dairy Whitener</h3>
+        <p>Creamy tea & coffee whitener.</p>
+      </div>
+      <div class="product-card" onclick="openModal('rasgulla')">
+        <img src="images/rasgulla.jpg" alt="Rasgulla">
+        <h3>Rasgulla</h3>
+        <p>Soft, spongy Bengali rasgullas.</p>
+      </div>
+      <div class="product-card" onclick="openModal('gulab')">
+        <img src="images/gulab.jpg" alt="Gulab Jamun">
+        <h3>Gulab Jamun</h3>
+        <p>Khoya gulab jamun in syrup.</p>
+      </div>
+      <div class="product-card" onclick="openModal('paneer')">
+        <img src="images/paneer.jpg" alt="Paneer">
+        <h3>Paneer</h3>
+        <p>Fresh, soft paneer from milk.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODAL ===== -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <p id="modalPrice"></p>
+      <form id="orderForm">
+        <label>Quantity:</label>
+        <input type="number" id="quantity" min="1" value="1" required>
+        <label>Name:</label>
+        <input type="text" id="customerName" required>
+        <label>Phone:</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        <label>Address:</label>
+        <textarea id="address" required></textarea>
+        <button type="button" id="buyButton">Pay Now</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    const products = {
+      "ghee": { title: "Ghee", desc: "Pure aromatic ghee from fresh cream.", price: 50000, image: "images/ghee.jpg" },
+      "cow-ghee": { title: "Cow Ghee", desc: "Rich, authentic cow ghee flavor.", price: 55000, image: "images/cow-ghee.jpg" },
+      "butter": { title: "Butter", desc: "Creamy butter for every meal.", price: 30000, image: "images/butter.jpg" },
+      "table-butter": { title: "Table Butter", desc: "Salted butter for snacks & dishes.", price: 32000, image: "images/table-butter.jpg" },
+      "skimmed": { title: "Skimmed Milk Powder", desc: "Healthy, low-fat milk powder.", price: 40000, image: "images/skimmed.jpg" },
+      "whole": { title: "Whole Milk Powder", desc: "Rich, full-cream milk powder.", price: 45000, image: "images/whole.jpg" },
+      "whitener": { title: "Dairy Whitener", desc: "Creamy tea & coffee whitener.", price: 35000, image: "images/whitener.jpg" },
+      "rasgulla": { title: "Rasgulla", desc: "Soft, spongy Bengali rasgullas.", price: 25000, image: "images/rasgulla.jpg" },
+      "gulab": { title: "Gulab Jamun", desc: "Khoya gulab jamun in syrup.", price: 27000, image: "images/gulab.jpg" },
+      "paneer": { title: "Paneer", desc: "Fresh, soft paneer from milk.", price: 30000, image: "images/paneer.jpg" }
+    };
+
+    let selectedProduct = null;
+    function openModal(productId) {
+      selectedProduct = products[productId];
+      document.getElementById("modalImage").src = selectedProduct.image;
+      document.getElementById("modalTitle").innerText = selectedProduct.title;
+      document.getElementById("modalDesc").innerText = selectedProduct.desc;
+      document.getElementById("modalPrice").innerText = "₹" + (selectedProduct.price / 100);
+      document.getElementById("productModal").style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById("productModal").style.display = "none";
+    }
+    document.getElementById("buyButton").addEventListener("click", function() {
+      let quantity = document.getElementById("quantity").value;
+      let customerName = document.getElementById("customerName").value;
+      let phone = document.getElementById("phone").value;
+      let address = document.getElementById("address").value;
+      if (!quantity || !customerName || !phone || !address) {
+        alert("Please fill all fields!");
+        return;
+      }
+      let totalAmount = selectedProduct.price * quantity;
+      var options = {
+        "key": "YOUR_RAZORPAY_KEY_ID",
+        "amount": totalAmount,
+        "currency": "INR",
+        "name": "TRILORA",
+        "description": selectedProduct.desc,
+        "image": "images/logo.png",
+        "handler": function (response){
+            alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+        },
+        "notes": {
+            "Customer Name": customerName,
+            "Phone": phone,
+            "Address": address,
+            "Product": selectedProduct.title,
+            "Quantity": quantity
+        },
+        "theme": {
+            "color": "#2c5e3f"
+        }
+      };
+      var rzp = new Razorpay(options);
+      rzp.open();
+    });
+    window.onclick = function(event) {
+      if (event.target === document.getElementById("productModal")) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>
